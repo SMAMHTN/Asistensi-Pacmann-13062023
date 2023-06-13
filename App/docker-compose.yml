@@ -1,0 +1,16 @@
+version: "3.9"
+services:
+  pythonapp:
+    build: .
+    depends_on:
+      - db
+    volumes:
+      - ./:/App/:rw
+    ports:
+      - "6565:6565"
+    command: /bin/sh -c "while true; do sleep 100000; done"
+  db:
+    image: postgres:15.3
+    environment:
+      - POSTGRES_PASSWORD=aldim
+      - POSTGRES_DB=kms
